@@ -24,14 +24,14 @@ public class Store<T: StateType>: StoreType {
         stateVar = Variable(state)
         self.reducer = reducer
         
-        let dispatch: DispatchFunction = { [weak self] in
-            self?.dispatch(action: $0)
+        let dispatch: DispatchFunction = { [unowned self] in
+            self.dispatch(action: $0)
         }
-        let getState: GetState = { [weak self] in
-            self?.getState()
+        let getState: GetState = { [unowned self] in
+            self.getState()
         }
-        dispatchFunction = middlewares.reversed().reduce({ [weak self] action in
-            self?.dispatchCore(action: action)
+        dispatchFunction = middlewares.reversed().reduce({ [unowned self] action in
+            self.dispatchCore(action: action)
         }) { composed, middleware in
             return middleware.process(dispatch: dispatch, getState: getState)(composed)
         }
@@ -41,12 +41,12 @@ public class Store<T: StateType>: StoreType {
         return stateVar.value
     }
     
+    @discardableResult
     public func dispatch(action: Action) -> Any {
         return dispatchFunction(action)
     }
     
     private func dispatchCore(action: Action) -> Any {
-        assert(Thread.isMainThread)
         guard !isDispatching else {
             fatalError("Redux:IllegalDispatchFromReducer - Reducers may not dispatch actions.")
         }
