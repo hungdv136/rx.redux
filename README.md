@@ -1,6 +1,4 @@
-Redux using ReactiveX
-
-
+Redux using ReactiveX in Swift
 Requirements
 
 Xcode 8.0
