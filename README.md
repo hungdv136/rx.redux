@@ -19,5 +19,4 @@ https://github.com/hungdv136/rx.redux.counter-example
 Inspired from 
 
 https://github.com/ReSwift/ReSwift
-
 http://reactivex.io
