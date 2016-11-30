@@ -15,3 +15,9 @@ pod 'RxRedux', :git => 'https://github.com/hungdv136/rx.redux.git'
 
 https://github.com/hungdv136/rx.redux.counter-example
 
+#Credit 
+Inspired from 
+
+https://github.com/ReSwift/ReSwift
+
+http://reactivex.io
