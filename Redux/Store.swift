@@ -42,7 +42,7 @@ public class Store<T: StateType>: StoreType {
     }
     
     @discardableResult
-    public func dispatch(action: Action) -> Any {
+    public func dispatch(_ action: Action) -> Any {
         return dispatchFunction(action)
     }
     
