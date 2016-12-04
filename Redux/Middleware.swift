@@ -10,5 +10,5 @@ public typealias DispatchFunction = (Action) -> Any
 public typealias GetState = () -> StateType?
 
 public protocol Middleware {
-    func process(dispatch: @escaping DispatchFunction, getState: @escaping GetState) -> (@escaping DispatchFunction) -> DispatchFunction
+    func process(getState: @escaping GetState, dispatch: @escaping DispatchFunction) -> (@escaping DispatchFunction) -> DispatchFunction
 }

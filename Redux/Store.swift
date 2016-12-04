@@ -15,7 +15,7 @@ public protocol StoreType {
     
     var state: Driver<State> { get }
     func getState() -> State
-    func dispatch(action: Action) -> Any
+    func dispatch(_ action: Action) -> Any
 }
 
 
@@ -25,7 +25,7 @@ public class Store<T: StateType>: StoreType {
         self.reducer = reducer
         
         let dispatch: DispatchFunction = { [unowned self] in
-            self.dispatch(action: $0)
+            self.dispatch($0)
         }
         let getState: GetState = { [unowned self] in
             self.getState()
@@ -33,7 +33,7 @@ public class Store<T: StateType>: StoreType {
         dispatchFunction = middlewares.reversed().reduce({ [unowned self] action in
             self.dispatchCore(action: action)
         }) { composed, middleware in
-            return middleware.process(dispatch: dispatch, getState: getState)(composed)
+            return middleware.process(getState: getState, dispatch: dispatch)(composed)
         }
     }
     
