@@ -1,6 +1,6 @@
 #Introduction 
 
-RxRedux is a Redux-like implementation of the unidirectional data flow architecture in Swift. RxRedux bases on https://github.com/ReSwift/ReSwift and ReactiveX 
+RxRedux is an implementation of the unidirectional data flow architecture in Swift. RxRedux bases on https://github.com/ReSwift/ReSwift and ReactiveX 
 
 #Requirements
 
