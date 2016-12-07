@@ -6,8 +6,8 @@
 //  Copyright © 2016 chucuoi.net. All rights reserved.
 //
 
-public typealias AsyncActionCreator = (GetState, DispatchFunction) -> Any
-public typealias ActionCreator = (GetState, DispatchFunction) -> Void
+public typealias AsyncActionCreator = (@escaping GetState, @escaping DispatchFunction) -> Any
+public typealias ActionCreator = (@escaping GetState, @escaping DispatchFunction) -> Void
 
 public struct AsyncActionWrapper: Action {
     public let action: AsyncActionCreator
@@ -30,6 +30,8 @@ public extension StoreType {
 }
 
 public struct ThunkMiddleware: Middleware {
+    public init() {}
+    
     public func process(getState: @escaping GetState, dispatch: @escaping DispatchFunction) -> (@escaping DispatchFunction) -> DispatchFunction {
         return { next in
             return { action in
